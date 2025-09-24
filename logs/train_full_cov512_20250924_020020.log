@@ -1,0 +1,681 @@
+[INFO] Start time: Wed Sep 24 02:00:20 AM CST 2025
+args:
+Namespace(device='0,1', model_config='config/model_config_small.json', tokenizer_path='cache/vocab_small.txt', raw_data_path='data/train.json', tokenized_data_path='data/tokenized_cov512/', raw=True, epochs=12, batch_size=12, lr=8e-05, warmup_steps=3000, log_step=48, stride=512, gradient_accumulation=2, fp16=False, fp16_opt_level='O1', max_grad_norm=1.0, num_pieces=32, min_length=128, output_dir='model_full_cov512/', pretrained_model='', resume_dir='', writer_dir='runs/full_cov512/', segment=False, bpe_token=False, encoder_json='tokenizations/encoder.json', vocab_bpe='tokenizations/vocab.bpe')
+config:
+{
+  "attn_pdrop": 0.1,
+  "embd_pdrop": 0.1,
+  "finetuning_task": null,
+  "initializer_range": 0.02,
+  "layer_norm_epsilon": 1e-05,
+  "n_ctx": 1024,
+  "n_embd": 768,
+  "n_head": 12,
+  "n_layer": 10,
+  "n_positions": 1024,
+  "num_labels": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pruned_heads": {},
+  "resid_pdrop": 0.1,
+  "summary_activation": null,
+  "summary_first_dropout": 0.1,
+  "summary_proj_to_labels": true,
+  "summary_type": "cls_index",
+  "summary_use_proj": true,
+  "torchscript": false,
+  "use_bfloat16": false,
+  "vocab_size": 13317
+}
+
+using device: cuda
+building files
+reading lines
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:43<53:15, 103.09s/it]  6%|▋         | 2/32 [02:12<29:44, 59.49s/it]   9%|▉         | 3/32 [02:13<15:55, 32.96s/it] 12%|█▎        | 4/32 [02:14<09:30, 20.37s/it] 16%|█▌        | 5/32 [02:18<06:28, 14.38s/it] 19%|█▉        | 6/32 [02:21<04:31, 10.45s/it] 22%|██▏       | 7/32 [02:59<08:13, 19.74s/it] 25%|██▌       | 8/32 [03:00<05:29, 13.72s/it] 28%|██▊       | 9/32 [03:01<03:42,  9.69s/it] 31%|███▏      | 10/32 [03:06<02:58,  8.11s/it] 34%|███▍      | 11/32 [03:06<02:01,  5.80s/it] 38%|███▊      | 12/32 [03:07<01:23,  4.19s/it] 41%|████      | 13/32 [03:29<03:05,  9.75s/it] 44%|████▍     | 14/32 [04:25<07:07, 23.75s/it] 47%|████▋     | 15/32 [06:15<14:02, 49.56s/it] 50%|█████     | 16/32 [06:16<09:18, 34.89s/it] 53%|█████▎    | 17/32 [06:25<06:46, 27.07s/it] 56%|█████▋    | 18/32 [06:25<04:27, 19.11s/it] 59%|█████▉    | 19/32 [06:26<02:59, 13.78s/it] 62%|██████▎   | 20/32 [06:27<01:57,  9.79s/it] 66%|██████▌   | 21/32 [06:30<01:25,  7.77s/it] 69%|██████▉   | 22/32 [06:46<01:42, 10.20s/it] 72%|███████▏  | 23/32 [06:47<01:06,  7.41s/it] 75%|███████▌  | 24/32 [06:48<00:44,  5.60s/it] 78%|███████▊  | 25/32 [06:49<00:29,  4.26s/it] 81%|████████▏ | 26/32 [06:52<00:22,  3.77s/it] 84%|████████▍ | 27/32 [06:52<00:13,  2.77s/it] 88%|████████▊ | 28/32 [07:20<00:41, 10.26s/it] 91%|█████████ | 29/32 [07:21<00:22,  7.42s/it] 94%|█████████▍| 30/32 [07:27<00:14,  7.11s/it] 97%|█████████▋| 31/32 [07:28<00:05,  5.23s/it]100%|██████████| 32/32 [08:21<00:00, 19.67s/it]100%|██████████| 32/32 [08:21<00:00, 15.69s/it]
+finish
+files built
+number of parameters: 81894144
+calculating total steps
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [00:00<00:08,  3.70it/s]  9%|▉         | 3/32 [00:00<00:03,  8.63it/s] 19%|█▉        | 6/32 [00:00<00:01, 15.08it/s] 25%|██▌       | 8/32 [00:00<00:01, 16.10it/s] 41%|████      | 13/32 [00:00<00:00, 20.52it/s] 50%|█████     | 16/32 [00:01<00:01, 12.61it/s] 66%|██████▌   | 21/32 [00:01<00:00, 18.05it/s] 75%|███████▌  | 24/32 [00:01<00:00, 19.30it/s] 88%|████████▊ | 28/32 [00:01<00:00, 20.80it/s]100%|██████████| 32/32 [00:02<00:00, 15.76it/s]100%|██████████| 32/32 [00:02<00:00, 15.82it/s]
+/home/zhanwr/GPT-2-backup/.venv/lib64/python3.13/site-packages/torch/nn/parallel/_functions.py:71: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn(
+/home/zhanwr/GPT-2-backup/.venv/lib64/python3.13/site-packages/transformers/optimization.py:166: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha = 1) (Triggered internally at /pytorch/torch/csrc/utils/python_arg_parser.cpp:1691.)
+  exp_avg.mul_(beta1).add_(1.0 - beta1, grad)
+total steps = 13438
+Let's use 2 GPUs!
+starting training
+epoch 1
+time: 2025-09-24 02:08:50.047965
+now time: 2:9. Step 17 of piece 1 of epoch 1, loss 9.607359210650126
+now time: 2:9. Step 34 of piece 2 of epoch 1, loss 9.384911259015402
+now time: 2:10. Step 37 of piece 3 of epoch 1, loss 9.026943604151407
+now time: 2:10. Step 39 of piece 4 of epoch 1, loss 8.631781935691833
+now time: 2:10. Step 87 of piece 4 of epoch 1, loss 8.342944860458374
+now time: 2:11. Step 135 of piece 4 of epoch 1, loss 8.164870381355286
+now time: 2:11. Step 24 of piece 5 of epoch 1, loss 8.071567674477896
+now time: 2:12. Step 72 of piece 5 of epoch 1, loss 7.958986918131511
+now time: 2:12. Step 120 of piece 5 of epoch 1, loss 7.787931362787883
+now time: 2:12. Step 168 of piece 5 of epoch 1, loss 7.602594236532847
+now time: 2:13. Step 216 of piece 5 of epoch 1, loss 7.374691744645436
+now time: 2:13. Step 264 of piece 5 of epoch 1, loss 7.159115135669708
+now time: 2:14. Step 21 of piece 7 of epoch 1, loss 7.143201768398285
+now time: 2:14. Step 21 of piece 9 of epoch 1, loss 6.990824321905772
+now time: 2:14. Step 17 of piece 11 of epoch 1, loss 6.749594807624817
+now time: 2:15. Step 65 of piece 11 of epoch 1, loss 6.5895582636197405
+now time: 2:15. Step 113 of piece 11 of epoch 1, loss 6.425283094247182
+now time: 2:16. Step 161 of piece 11 of epoch 1, loss 6.293665965398152
+now time: 2:16. Step 209 of piece 11 of epoch 1, loss 6.174545526504517
+now time: 2:17. Step 257 of piece 11 of epoch 1, loss 6.089969257513682
+now time: 2:17. Step 48 of piece 12 of epoch 1, loss 5.942515432834625
+now time: 2:17. Step 96 of piece 12 of epoch 1, loss 5.858627438545227
+now time: 2:18. Step 47 of piece 13 of epoch 1, loss 5.793697317441304
+now time: 2:18. Step 95 of piece 13 of epoch 1, loss 5.711023271083832
+now time: 2:19. Step 22 of piece 14 of epoch 1, loss 5.780355950196584
+now time: 2:19. Step 15 of piece 17 of epoch 1, loss 5.7573202252388
+now time: 2:19. Step 25 of piece 18 of epoch 1, loss 5.767903923988342
+now time: 2:20. Step 23 of piece 19 of epoch 1, loss 5.62482351064682
+now time: 2:20. Step 40 of piece 20 of epoch 1, loss 5.6153298417727155
+now time: 2:21. Step 28 of piece 21 of epoch 1, loss 5.569157898426056
+now time: 2:21. Step 26 of piece 22 of epoch 1, loss 5.503728449344635
+now time: 2:21. Step 74 of piece 22 of epoch 1, loss 5.323208888371785
+now time: 2:22. Step 18 of piece 23 of epoch 1, loss 5.387186606725057
+now time: 2:22. Step 48 of piece 24 of epoch 1, loss 5.631078541278839
+now time: 2:23. Step 46 of piece 25 of epoch 1, loss 5.44916154940923
+now time: 2:23. Step 94 of piece 25 of epoch 1, loss 5.333836277325948
+now time: 2:24. Step 29 of piece 26 of epoch 1, loss 5.274377942085266
+now time: 2:24. Step 43 of piece 27 of epoch 1, loss 5.400000294049581
+now time: 2:24. Step 91 of piece 27 of epoch 1, loss 5.221494833628337
+now time: 2:25. Step 18 of piece 29 of epoch 1, loss 5.2378190358479815
+now time: 2:25. Step 28 of piece 31 of epoch 1, loss 5.2467244664827986
+now time: 2:26. Step 76 of piece 31 of epoch 1, loss 5.190667688846588
+now time: 2:26. Step 124 of piece 31 of epoch 1, loss 5.108087142308553
+now time: 2:26. Step 172 of piece 31 of epoch 1, loss 5.07067209482193
+now time: 2:27. Step 220 of piece 31 of epoch 1, loss 5.012052337328593
+now time: 2:27. Step 268 of piece 31 of epoch 1, loss 4.966782530148824
+saving model for epoch 1
+epoch 1 finished
+time: 2025-09-24 02:27:54.340854
+time for one epoch: 0:19:04.292889
+epoch 2
+time: 2025-09-24 02:27:54.340897
+now time: 2:28. Step 28 of piece 0 of epoch 2, loss 5.090141852696736
+now time: 2:28. Step 76 of piece 0 of epoch 2, loss 5.0805790821711225
+now time: 2:28. Step 124 of piece 0 of epoch 2, loss 4.974703033765157
+now time: 2:29. Step 172 of piece 0 of epoch 2, loss 4.906793117523193
+now time: 2:29. Step 220 of piece 0 of epoch 2, loss 4.868240316708882
+now time: 2:30. Step 11 of piece 1 of epoch 2, loss 4.852813522020976
+now time: 2:30. Step 59 of piece 1 of epoch 2, loss 4.951938450336456
+now time: 2:31. Step 1 of piece 2 of epoch 2, loss 4.8402953545252485
+now time: 2:31. Step 26 of piece 3 of epoch 2, loss 5.258075773715973
+now time: 2:31. Step 28 of piece 4 of epoch 2, loss 4.986581703027089
+now time: 2:32. Step 76 of piece 4 of epoch 2, loss 4.722841580708821
+now time: 2:32. Step 3 of piece 5 of epoch 2, loss 4.688091675440471
+now time: 2:33. Step 51 of piece 5 of epoch 2, loss 4.819002072016398
+now time: 2:33. Step 99 of piece 5 of epoch 2, loss 4.777968684832255
+now time: 2:33. Step 147 of piece 5 of epoch 2, loss 4.714309990406036
+now time: 2:34. Step 195 of piece 5 of epoch 2, loss 4.707024395465851
+now time: 2:34. Step 243 of piece 5 of epoch 2, loss 4.613730708758037
+now time: 2:35. Step 3 of piece 6 of epoch 2, loss 4.666968921820323
+now time: 2:35. Step 51 of piece 6 of epoch 2, loss 4.802171925703685
+now time: 2:35. Step 99 of piece 6 of epoch 2, loss 4.6894097328186035
+now time: 2:36. Step 3 of piece 8 of epoch 2, loss 4.773992995421092
+now time: 2:36. Step 4 of piece 10 of epoch 2, loss 4.9896293481191
+now time: 2:37. Step 7 of piece 11 of epoch 2, loss 4.864408155282338
+now time: 2:37. Step 55 of piece 11 of epoch 2, loss 4.685297250747681
+now time: 2:37. Step 103 of piece 11 of epoch 2, loss 4.592808326085408
+now time: 2:38. Step 151 of piece 11 of epoch 2, loss 4.540493349234263
+now time: 2:38. Step 9 of piece 13 of epoch 2, loss 4.893689076105754
+now time: 2:39. Step 19 of piece 14 of epoch 2, loss 4.783683796723683
+now time: 2:39. Step 38 of piece 15 of epoch 2, loss 4.686309178670247
+now time: 2:40. Step 86 of piece 15 of epoch 2, loss 4.5924906730651855
+now time: 2:40. Step 37 of piece 16 of epoch 2, loss 4.844808240731557
+now time: 2:40. Step 17 of piece 18 of epoch 2, loss 4.791816075642903
+now time: 2:41. Step 12 of piece 21 of epoch 2, loss 4.769241730372111
+now time: 2:41. Step 28 of piece 23 of epoch 2, loss 4.705033799012502
+now time: 2:42. Step 2 of piece 25 of epoch 2, loss 4.72393540541331
+now time: 2:42. Step 50 of piece 25 of epoch 2, loss 4.593387007713318
+now time: 2:42. Step 98 of piece 25 of epoch 2, loss 4.475473999977112
+now time: 2:43. Step 8 of piece 27 of epoch 2, loss 4.641877273718516
+now time: 2:43. Step 56 of piece 27 of epoch 2, loss 4.590396404266357
+now time: 2:44. Step 44 of piece 28 of epoch 2, loss 4.544732411702474
+now time: 2:44. Step 42 of piece 29 of epoch 2, loss 4.5915149847666425
+now time: 2:44. Step 90 of piece 29 of epoch 2, loss 4.409371058146159
+now time: 2:45. Step 138 of piece 29 of epoch 2, loss 4.300064484278361
+now time: 2:45. Step 186 of piece 29 of epoch 2, loss 4.222266793251038
+now time: 2:46. Step 234 of piece 29 of epoch 2, loss 4.206066985925038
+now time: 2:46. Step 15 of piece 30 of epoch 2, loss 4.361632923285167
+saving model for epoch 2
+epoch 2 finished
+time: 2025-09-24 02:46:58.571829
+time for one epoch: 0:19:04.230932
+epoch 3
+time: 2025-09-24 02:46:58.571872
+now time: 2:47. Step 8 of piece 0 of epoch 3, loss 4.890910228093465
+now time: 2:47. Step 11 of piece 1 of epoch 3, loss 4.670808931191762
+now time: 2:47. Step 9 of piece 2 of epoch 3, loss 4.554095685482025
+now time: 2:48. Step 57 of piece 2 of epoch 3, loss 4.431895951430003
+now time: 2:48. Step 105 of piece 2 of epoch 3, loss 4.3618457317352295
+now time: 2:49. Step 153 of piece 2 of epoch 3, loss 4.267859041690826
+now time: 2:49. Step 42 of piece 3 of epoch 3, loss 4.566267708937327
+now time: 2:49. Step 90 of piece 3 of epoch 3, loss 4.4387582540512085
+now time: 2:50. Step 138 of piece 3 of epoch 3, loss 4.4029244383176165
+now time: 2:50. Step 186 of piece 3 of epoch 3, loss 4.375439623991649
+now time: 2:51. Step 234 of piece 3 of epoch 3, loss 4.3328467806180315
+now time: 2:51. Step 25 of piece 4 of epoch 3, loss 4.443347255388896
+now time: 2:51. Step 15 of piece 6 of epoch 3, loss 4.5863755742708845
+now time: 2:52. Step 63 of piece 6 of epoch 3, loss 4.45986161629359
+now time: 2:52. Step 111 of piece 6 of epoch 3, loss 4.3734814922014875
+now time: 2:53. Step 8 of piece 8 of epoch 3, loss 4.529099365075429
+now time: 2:53. Step 38 of piece 9 of epoch 3, loss 4.7083353996276855
+now time: 2:54. Step 40 of piece 10 of epoch 3, loss 4.655379235744476
+now time: 2:54. Step 7 of piece 12 of epoch 3, loss 4.680874327818553
+now time: 2:54. Step 31 of piece 13 of epoch 3, loss 4.467280268669128
+now time: 2:55. Step 29 of piece 14 of epoch 3, loss 4.319280246893565
+now time: 2:55. Step 77 of piece 14 of epoch 3, loss 4.116135050853093
+now time: 2:56. Step 125 of piece 14 of epoch 3, loss 4.033609340588252
+now time: 2:56. Step 173 of piece 14 of epoch 3, loss 4.001222322384517
+now time: 2:56. Step 221 of piece 14 of epoch 3, loss 3.9808738132317862
+now time: 2:57. Step 2 of piece 15 of epoch 3, loss 3.989116201798121
+now time: 2:57. Step 50 of piece 15 of epoch 3, loss 4.35069598754247
+now time: 2:58. Step 98 of piece 15 of epoch 3, loss 4.196697195370992
+now time: 2:58. Step 19 of piece 17 of epoch 3, loss 4.616017520427704
+now time: 2:58. Step 12 of piece 19 of epoch 3, loss 4.627062638600667
+now time: 2:59. Step 5 of piece 22 of epoch 3, loss 4.581334729989369
+now time: 2:59. Step 38 of piece 23 of epoch 3, loss 4.440828363100688
+now time: 3:0. Step 86 of piece 23 of epoch 3, loss 4.305775443712871
+now time: 3:0. Step 14 of piece 25 of epoch 3, loss 4.3723777532577515
+now time: 3:0. Step 33 of piece 26 of epoch 3, loss 4.404658993085225
+now time: 3:1. Step 81 of piece 26 of epoch 3, loss 4.298814018567403
+now time: 3:1. Step 129 of piece 26 of epoch 3, loss 4.232528964678447
+now time: 3:2. Step 177 of piece 26 of epoch 3, loss 4.240109364191691
+now time: 3:2. Step 225 of piece 26 of epoch 3, loss 4.152495741844177
+now time: 3:3. Step 273 of piece 26 of epoch 3, loss 4.12762717405955
+now time: 3:3. Step 9 of piece 28 of epoch 3, loss 4.311077545086543
+now time: 3:3. Step 57 of piece 28 of epoch 3, loss 4.280102451642354
+now time: 3:4. Step 8 of piece 29 of epoch 3, loss 4.212787588437398
+now time: 3:4. Step 56 of piece 29 of epoch 3, loss 4.2282178203264875
+now time: 3:5. Step 44 of piece 30 of epoch 3, loss 4.177721381187439
+now time: 3:5. Step 92 of piece 30 of epoch 3, loss 4.109261989593506
+now time: 3:5. Step 19 of piece 31 of epoch 3, loss 4.164423803488414
+saving model for epoch 3
+epoch 3 finished
+time: 2025-09-24 03:06:01.638660
+time for one epoch: 0:19:03.066788
+epoch 4
+time: 2025-09-24 03:06:01.638699
+now time: 3:6. Step 36 of piece 0 of epoch 4, loss 4.175635457038879
+now time: 3:6. Step 84 of piece 0 of epoch 4, loss 4.021309196949005
+now time: 3:7. Step 28 of piece 1 of epoch 4, loss 4.243253121773402
+now time: 3:7. Step 6 of piece 4 of epoch 4, loss 4.335629999637604
+now time: 3:7. Step 8 of piece 5 of epoch 4, loss 4.383425613244374
+now time: 3:8. Step 27 of piece 6 of epoch 4, loss 4.103323141733806
+now time: 3:8. Step 75 of piece 6 of epoch 4, loss 3.9733769992987313
+now time: 3:9. Step 2 of piece 7 of epoch 4, loss 3.905337323745092
+now time: 3:9. Step 32 of piece 8 of epoch 4, loss 4.2069495022296906
+now time: 3:10. Step 80 of piece 8 of epoch 4, loss 4.055595467487971
+now time: 3:10. Step 31 of piece 9 of epoch 4, loss 4.122051894664764
+now time: 3:10. Step 79 of piece 9 of epoch 4, loss 4.069091906150182
+now time: 3:11. Step 21 of piece 10 of epoch 4, loss 4.114983260631561
+now time: 3:11. Step 7 of piece 12 of epoch 4, loss 4.176267345746358
+now time: 3:12. Step 5 of piece 13 of epoch 4, loss 4.180571377277374
+now time: 3:12. Step 53 of piece 13 of epoch 4, loss 4.007280856370926
+now time: 3:12. Step 101 of piece 13 of epoch 4, loss 3.8683690230051675
+now time: 3:13. Step 149 of piece 13 of epoch 4, loss 3.80191304286321
+now time: 3:13. Step 15 of piece 15 of epoch 4, loss 4.214187949895859
+now time: 3:14. Step 13 of piece 16 of epoch 4, loss 4.043913304805756
+now time: 3:14. Step 61 of piece 16 of epoch 4, loss 4.12442562977473
+now time: 3:14. Step 109 of piece 16 of epoch 4, loss 3.9677283465862274
+now time: 3:15. Step 157 of piece 16 of epoch 4, loss 3.9428446292877197
+now time: 3:15. Step 205 of piece 16 of epoch 4, loss 3.8691722452640533
+now time: 3:16. Step 253 of piece 16 of epoch 4, loss 3.835587352514267
+now time: 3:16. Step 44 of piece 17 of epoch 4, loss 4.215156237284343
+now time: 3:16. Step 19 of piece 19 of epoch 4, loss 4.258317391077678
+now time: 3:17. Step 7 of piece 20 of epoch 4, loss 3.9537777304649353
+now time: 3:17. Step 21 of piece 21 of epoch 4, loss 3.9834615190823874
+now time: 3:18. Step 69 of piece 21 of epoch 4, loss 3.7320117155710855
+now time: 3:18. Step 117 of piece 21 of epoch 4, loss 3.6240241825580597
+now time: 3:19. Step 165 of piece 21 of epoch 4, loss 3.570574243863424
+now time: 3:19. Step 213 of piece 21 of epoch 4, loss 3.5441756745179496
+now time: 3:19. Step 261 of piece 21 of epoch 4, loss 3.503001093864441
+now time: 3:20. Step 42 of piece 22 of epoch 4, loss 4.0645809670289355
+now time: 3:20. Step 27 of piece 24 of epoch 4, loss 4.029362310965856
+now time: 3:21. Step 30 of piece 26 of epoch 4, loss 4.161055753628413
+now time: 3:21. Step 9 of piece 29 of epoch 4, loss 4.125781387090683
+now time: 3:21. Step 33 of piece 30 of epoch 4, loss 4.055889894564946
+now time: 3:22. Step 81 of piece 30 of epoch 4, loss 3.9145792027314505
+now time: 3:22. Step 16 of piece 31 of epoch 4, loss 3.9292038778464
+now time: 3:23. Step 64 of piece 31 of epoch 4, loss 3.930234690507253
+now time: 3:23. Step 112 of piece 31 of epoch 4, loss 3.846382796764374
+now time: 3:23. Step 160 of piece 31 of epoch 4, loss 3.779397885004679
+now time: 3:24. Step 208 of piece 31 of epoch 4, loss 3.733662962913513
+now time: 3:24. Step 256 of piece 31 of epoch 4, loss 3.743313044309616
+saving model for epoch 4
+epoch 4 finished
+time: 2025-09-24 03:25:04.976686
+time for one epoch: 0:19:03.337987
+epoch 5
+time: 2025-09-24 03:25:04.976719
+now time: 3:25. Step 1 of piece 1 of epoch 5, loss 3.800887097915014
+now time: 3:25. Step 25 of piece 2 of epoch 5, loss 3.9940930207570395
+now time: 3:26. Step 23 of piece 3 of epoch 5, loss 4.06685945391655
+now time: 3:26. Step 2 of piece 5 of epoch 5, loss 3.9487364689509072
+now time: 3:26. Step 1 of piece 7 of epoch 5, loss 3.8748706380526223
+now time: 3:27. Step 49 of piece 7 of epoch 5, loss 3.7697967092196145
+now time: 3:27. Step 97 of piece 7 of epoch 5, loss 3.6731348037719727
+now time: 3:28. Step 24 of piece 8 of epoch 5, loss 3.7036494513352713
+now time: 3:28. Step 12 of piece 9 of epoch 5, loss 3.800372729698817
+now time: 3:28. Step 36 of piece 10 of epoch 5, loss 3.864645560582479
+now time: 3:29. Step 84 of piece 10 of epoch 5, loss 3.773095021645228
+now time: 3:29. Step 12 of piece 12 of epoch 5, loss 4.0068085590998335
+now time: 3:30. Step 22 of piece 14 of epoch 5, loss 3.8904546399911246
+now time: 3:30. Step 20 of piece 15 of epoch 5, loss 3.846882919470469
+now time: 3:30. Step 26 of piece 17 of epoch 5, loss 3.8029006123542786
+now time: 3:31. Step 40 of piece 18 of epoch 5, loss 3.7943932314713797
+now time: 3:31. Step 88 of piece 18 of epoch 5, loss 3.7363231778144836
+now time: 3:32. Step 23 of piece 19 of epoch 5, loss 3.87315825621287
+now time: 3:32. Step 48 of piece 20 of epoch 5, loss 3.6783850292364755
+now time: 3:33. Step 96 of piece 20 of epoch 5, loss 3.5601111352443695
+now time: 3:33. Step 144 of piece 20 of epoch 5, loss 3.496218333641688
+now time: 3:33. Step 4 of piece 22 of epoch 5, loss 3.6837776799996695
+now time: 3:34. Step 52 of piece 22 of epoch 5, loss 3.825932095448176
+now time: 3:34. Step 100 of piece 22 of epoch 5, loss 3.672426958878835
+now time: 3:35. Step 148 of piece 22 of epoch 5, loss 3.61559064189593
+now time: 3:35. Step 196 of piece 22 of epoch 5, loss 3.601792812347412
+now time: 3:35. Step 244 of piece 22 of epoch 5, loss 3.5888452231884003
+now time: 3:36. Step 4 of piece 24 of epoch 5, loss 3.8797279596328735
+now time: 3:36. Step 52 of piece 24 of epoch 5, loss 3.7951406439145408
+now time: 3:37. Step 100 of piece 24 of epoch 5, loss 3.6420394579569497
+now time: 3:37. Step 28 of piece 26 of epoch 5, loss 3.7478539844353995
+now time: 3:37. Step 76 of piece 26 of epoch 5, loss 3.6660127143065133
+now time: 3:38. Step 124 of piece 26 of epoch 5, loss 3.593346953392029
+now time: 3:38. Step 172 of piece 26 of epoch 5, loss 3.5904543499151864
+now time: 3:39. Step 220 of piece 26 of epoch 5, loss 3.5494087636470795
+now time: 3:39. Step 268 of piece 26 of epoch 5, loss 3.532756914695104
+now time: 3:40. Step 28 of piece 27 of epoch 5, loss 3.596234381198883
+now time: 3:40. Step 26 of piece 28 of epoch 5, loss 3.5468339224656424
+now time: 3:40. Step 74 of piece 28 of epoch 5, loss 3.396701375643412
+now time: 3:41. Step 122 of piece 28 of epoch 5, loss 3.303430736064911
+now time: 3:41. Step 170 of piece 28 of epoch 5, loss 3.2583418488502502
+now time: 3:42. Step 218 of piece 28 of epoch 5, loss 3.2500259776910148
+now time: 3:42. Step 266 of piece 28 of epoch 5, loss 3.228243440389633
+now time: 3:42. Step 47 of piece 29 of epoch 5, loss 3.6502161224683127
+now time: 3:43. Step 95 of piece 29 of epoch 5, loss 3.5352031687895455
+now time: 3:43. Step 39 of piece 30 of epoch 5, loss 3.8967198034127555
+now time: 3:44. Step 41 of piece 31 of epoch 5, loss 3.8169898788134256
+saving model for epoch 5
+epoch 5 finished
+time: 2025-09-24 03:44:09.829024
+time for one epoch: 0:19:04.852305
+epoch 6
+time: 2025-09-24 03:44:09.829066
+now time: 3:44. Step 10 of piece 1 of epoch 6, loss 3.6283226708571115
+now time: 3:44. Step 58 of piece 1 of epoch 6, loss 3.5127053757508597
+now time: 3:45. Step 106 of piece 1 of epoch 6, loss 3.454807231823603
+now time: 3:45. Step 33 of piece 2 of epoch 6, loss 3.449217826128006
+now time: 3:46. Step 81 of piece 2 of epoch 6, loss 3.403625011444092
+now time: 3:46. Step 129 of piece 2 of epoch 6, loss 3.3496458431084952
+now time: 3:47. Step 18 of piece 3 of epoch 6, loss 3.4655156830946603
+now time: 3:47. Step 42 of piece 4 of epoch 6, loss 3.7176929314931235
+now time: 3:47. Step 40 of piece 5 of epoch 6, loss 3.6851540207862854
+now time: 3:48. Step 88 of piece 5 of epoch 6, loss 3.566801349322001
+now time: 3:48. Step 23 of piece 6 of epoch 6, loss 3.5282524625460305
+now time: 3:49. Step 71 of piece 6 of epoch 6, loss 3.505499472220739
+now time: 3:49. Step 119 of piece 6 of epoch 6, loss 3.4562053084373474
+now time: 3:49. Step 167 of piece 6 of epoch 6, loss 3.4344883958498635
+now time: 3:50. Step 215 of piece 6 of epoch 6, loss 3.4225105543931327
+now time: 3:50. Step 263 of piece 6 of epoch 6, loss 3.352973371744156
+now time: 3:51. Step 5 of piece 8 of epoch 6, loss 3.588383903106054
+now time: 3:51. Step 7 of piece 10 of epoch 6, loss 3.8516604403654733
+now time: 3:51. Step 6 of piece 12 of epoch 6, loss 3.5929870009422302
+now time: 3:52. Step 30 of piece 13 of epoch 6, loss 3.7684392829736075
+now time: 3:52. Step 47 of piece 14 of epoch 6, loss 3.596349040667216
+now time: 3:53. Step 95 of piece 14 of epoch 6, loss 3.4933829307556152
+now time: 3:53. Step 23 of piece 16 of epoch 6, loss 3.6063643097877502
+now time: 3:53. Step 1 of piece 18 of epoch 6, loss 3.787790209054947
+now time: 3:54. Step 35 of piece 19 of epoch 6, loss 3.6460615396499634
+now time: 3:54. Step 83 of piece 19 of epoch 6, loss 3.539413809776306
+now time: 3:55. Step 34 of piece 20 of epoch 6, loss 3.624839723110199
+now time: 3:55. Step 22 of piece 22 of epoch 6, loss 3.6397334933280945
+now time: 3:56. Step 3 of piece 24 of epoch 6, loss 3.5457525849342346
+now time: 3:56. Step 51 of piece 24 of epoch 6, loss 3.2960890531539917
+now time: 3:56. Step 99 of piece 24 of epoch 6, loss 3.1757148603598275
+now time: 3:57. Step 147 of piece 24 of epoch 6, loss 3.164723038673401
+now time: 3:57. Step 195 of piece 24 of epoch 6, loss 3.09826789299647
+now time: 3:58. Step 243 of piece 24 of epoch 6, loss 3.0798594454924264
+now time: 3:58. Step 24 of piece 25 of epoch 6, loss 3.383965015411377
+now time: 3:58. Step 48 of piece 26 of epoch 6, loss 3.4593462149302163
+now time: 3:59. Step 96 of piece 26 of epoch 6, loss 3.370533933242162
+now time: 3:59. Step 40 of piece 27 of epoch 6, loss 3.5807981888453164
+now time: 4:0. Step 88 of piece 27 of epoch 6, loss 3.479171017805735
+now time: 4:0. Step 136 of piece 27 of epoch 6, loss 3.424646427234014
+now time: 4:0. Step 184 of piece 27 of epoch 6, loss 3.3959468007087708
+now time: 4:1. Step 232 of piece 27 of epoch 6, loss 3.36550036072731
+now time: 4:1. Step 23 of piece 28 of epoch 6, loss 3.5063306093215942
+now time: 4:2. Step 11 of piece 29 of epoch 6, loss 3.606406807899475
+now time: 4:2. Step 28 of piece 30 of epoch 6, loss 3.814794917901357
+now time: 4:3. Step 26 of piece 31 of epoch 6, loss 3.5815964341163635
+saving model for epoch 6
+epoch 6 finished
+time: 2025-09-24 04:03:13.923160
+time for one epoch: 0:19:04.094094
+epoch 7
+time: 2025-09-24 04:03:13.923401
+now time: 4:3. Step 24 of piece 0 of epoch 7, loss 3.4653129875659943
+now time: 4:3. Step 72 of piece 0 of epoch 7, loss 3.3520949880282083
+now time: 4:4. Step 120 of piece 0 of epoch 7, loss 3.2954152623812356
+now time: 4:4. Step 47 of piece 1 of epoch 7, loss 3.4767223795255027
+now time: 4:5. Step 95 of piece 1 of epoch 7, loss 3.348005473613739
+now time: 4:5. Step 37 of piece 2 of epoch 7, loss 3.6307355066140494
+now time: 4:5. Step 39 of piece 3 of epoch 7, loss 3.4666858414808908
+now time: 4:6. Step 87 of piece 3 of epoch 7, loss 3.3826858898003898
+now time: 4:6. Step 135 of piece 3 of epoch 7, loss 3.3267715175946555
+now time: 4:7. Step 183 of piece 3 of epoch 7, loss 3.2841652035713196
+now time: 4:7. Step 231 of piece 3 of epoch 7, loss 3.2733854055404663
+now time: 4:7. Step 279 of piece 3 of epoch 7, loss 3.304160247246424
+now time: 4:8. Step 24 of piece 5 of epoch 7, loss 3.4630686541398368
+now time: 4:8. Step 20 of piece 7 of epoch 7, loss 3.5160631438096366
+now time: 4:9. Step 68 of piece 7 of epoch 7, loss 3.452005167802175
+now time: 4:9. Step 19 of piece 8 of epoch 7, loss 3.4347586234410605
+now time: 4:9. Step 33 of piece 9 of epoch 7, loss 3.4858299990495047
+now time: 4:10. Step 36 of piece 10 of epoch 7, loss 3.578879803419113
+now time: 4:10. Step 5 of piece 12 of epoch 7, loss 3.4700233240922294
+now time: 4:11. Step 53 of piece 12 of epoch 7, loss 3.4753047625223794
+now time: 4:11. Step 101 of piece 12 of epoch 7, loss 3.417607605457306
+now time: 4:12. Step 5 of piece 14 of epoch 7, loss 3.414036273956299
+now time: 4:12. Step 53 of piece 14 of epoch 7, loss 3.4272073109944663
+now time: 4:12. Step 101 of piece 14 of epoch 7, loss 3.3344669938087463
+now time: 4:13. Step 149 of piece 14 of epoch 7, loss 3.288782219092051
+now time: 4:13. Step 197 of piece 14 of epoch 7, loss 3.278755863507589
+now time: 4:14. Step 245 of piece 14 of epoch 7, loss 3.256002753973007
+now time: 4:14. Step 18 of piece 16 of epoch 7, loss 3.5050673882166543
+now time: 4:14. Step 18 of piece 18 of epoch 7, loss 3.4517498215039573
+now time: 4:15. Step 66 of piece 18 of epoch 7, loss 3.1070033411184945
+now time: 4:15. Step 114 of piece 18 of epoch 7, loss 3.072859267393748
+now time: 4:16. Step 162 of piece 18 of epoch 7, loss 3.023899883031845
+now time: 4:16. Step 210 of piece 18 of epoch 7, loss 3.0080748399098716
+now time: 4:16. Step 258 of piece 18 of epoch 7, loss 2.975262075662613
+now time: 4:17. Step 21 of piece 20 of epoch 7, loss 3.5381684799989066
+now time: 4:17. Step 38 of piece 21 of epoch 7, loss 3.4190724591414132
+now time: 4:18. Step 13 of piece 23 of epoch 7, loss 3.6137148241202035
+now time: 4:18. Step 38 of piece 24 of epoch 7, loss 3.4066049059232077
+now time: 4:19. Step 86 of piece 24 of epoch 7, loss 3.22479709982872
+now time: 4:19. Step 134 of piece 24 of epoch 7, loss 3.1906806429227195
+now time: 4:19. Step 23 of piece 25 of epoch 7, loss 3.2544669806957245
+now time: 4:20. Step 71 of piece 25 of epoch 7, loss 3.277480979760488
+now time: 4:20. Step 15 of piece 26 of epoch 7, loss 3.392814298470815
+now time: 4:21. Step 8 of piece 28 of epoch 7, loss 3.577242116133372
+now time: 4:21. Step 32 of piece 29 of epoch 7, loss 3.465685466925303
+now time: 4:21. Step 6 of piece 31 of epoch 7, loss 3.4236043890317283
+saving model for epoch 7
+epoch 7 finished
+time: 2025-09-24 04:22:17.353613
+time for one epoch: 0:19:03.430212
+epoch 8
+time: 2025-09-24 04:22:17.353654
+now time: 4:22. Step 4 of piece 0 of epoch 8, loss 3.492259939511617
+now time: 4:22. Step 2 of piece 1 of epoch 8, loss 3.318141678969065
+now time: 4:23. Step 50 of piece 1 of epoch 8, loss 3.3883867065111795
+now time: 4:23. Step 98 of piece 1 of epoch 8, loss 3.241475204626719
+now time: 4:23. Step 40 of piece 2 of epoch 8, loss 3.3433543543020883
+now time: 4:24. Step 88 of piece 2 of epoch 8, loss 3.267369250456492
+now time: 4:24. Step 136 of piece 2 of epoch 8, loss 3.234707852204641
+now time: 4:25. Step 184 of piece 2 of epoch 8, loss 3.1955281595389047
+now time: 4:25. Step 232 of piece 2 of epoch 8, loss 3.2004884779453278
+now time: 4:26. Step 280 of piece 2 of epoch 8, loss 3.1933138171831765
+now time: 4:26. Step 9 of piece 4 of epoch 8, loss 3.344581345717112
+now time: 4:26. Step 11 of piece 5 of epoch 8, loss 3.488439291715622
+now time: 4:27. Step 59 of piece 5 of epoch 8, loss 3.298610587914785
+now time: 4:27. Step 16 of piece 7 of epoch 8, loss 3.597836365302404
+now time: 4:28. Step 3 of piece 10 of epoch 8, loss 3.490133990844091
+now time: 4:28. Step 51 of piece 10 of epoch 8, loss 3.3998323380947113
+now time: 4:28. Step 2 of piece 11 of epoch 8, loss 3.3271357715129852
+now time: 4:29. Step 18 of piece 13 of epoch 8, loss 3.322725256284078
+now time: 4:29. Step 16 of piece 14 of epoch 8, loss 3.233556181192398
+now time: 4:30. Step 64 of piece 14 of epoch 8, loss 3.198708395163218
+now time: 4:30. Step 8 of piece 15 of epoch 8, loss 3.1942428946495056
+now time: 4:30. Step 18 of piece 16 of epoch 8, loss 3.3554560045401254
+now time: 4:31. Step 66 of piece 16 of epoch 8, loss 3.298073182503382
+now time: 4:31. Step 114 of piece 16 of epoch 8, loss 3.187442978223165
+now time: 4:32. Step 41 of piece 17 of epoch 8, loss 3.3245760599772134
+now time: 4:32. Step 89 of piece 17 of epoch 8, loss 3.2469102442264557
+now time: 4:32. Step 137 of piece 17 of epoch 8, loss 3.2317189276218414
+now time: 4:33. Step 185 of piece 17 of epoch 8, loss 3.1869872212409973
+now time: 4:33. Step 233 of piece 17 of epoch 8, loss 3.186221887667974
+now time: 4:34. Step 24 of piece 18 of epoch 8, loss 3.3197379608949027
+now time: 4:34. Step 14 of piece 20 of epoch 8, loss 3.35988716284434
+now time: 4:35. Step 38 of piece 21 of epoch 8, loss 3.523132095734278
+now time: 4:35. Step 36 of piece 22 of epoch 8, loss 3.183781176805496
+now time: 4:35. Step 84 of piece 22 of epoch 8, loss 2.99698535601298
+now time: 4:36. Step 132 of piece 22 of epoch 8, loss 2.9370177686214447
+now time: 4:36. Step 180 of piece 22 of epoch 8, loss 2.9533535043398538
+now time: 4:37. Step 228 of piece 22 of epoch 8, loss 2.8924611806869507
+now time: 4:37. Step 9 of piece 23 of epoch 8, loss 3.050665328900019
+now time: 4:37. Step 57 of piece 23 of epoch 8, loss 3.371919165054957
+now time: 4:38. Step 105 of piece 23 of epoch 8, loss 3.2852205634117126
+now time: 4:38. Step 26 of piece 25 of epoch 8, loss 3.4504455824693046
+now time: 4:39. Step 11 of piece 27 of epoch 8, loss 3.413662910461426
+now time: 4:39. Step 35 of piece 28 of epoch 8, loss 3.2217346926530204
+now time: 4:39. Step 83 of piece 28 of epoch 8, loss 3.127078205347061
+now time: 4:40. Step 131 of piece 28 of epoch 8, loss 3.100315203269323
+now time: 4:40. Step 20 of piece 29 of epoch 8, loss 3.3066869378089905
+now time: 4:41. Step 8 of piece 31 of epoch 8, loss 3.419007142384847
+saving model for epoch 8
+epoch 8 finished
+time: 2025-09-24 04:41:22.409264
+time for one epoch: 0:19:05.055610
+epoch 9
+time: 2025-09-24 04:41:22.409301
+now time: 4:41. Step 32 of piece 0 of epoch 9, loss 3.3314679761727652
+now time: 4:42. Step 80 of piece 0 of epoch 9, loss 3.208132723967234
+now time: 4:42. Step 128 of piece 0 of epoch 9, loss 3.1219922502835593
+now time: 4:42. Step 176 of piece 0 of epoch 9, loss 3.13140598932902
+now time: 4:43. Step 224 of piece 0 of epoch 9, loss 3.1090436975161233
+now time: 4:43. Step 272 of piece 0 of epoch 9, loss 3.1426538825035095
+now time: 4:44. Step 32 of piece 1 of epoch 9, loss 3.2123117446899414
+now time: 4:44. Step 80 of piece 1 of epoch 9, loss 3.19827076792717
+now time: 4:44. Step 22 of piece 2 of epoch 9, loss 3.248107264439265
+now time: 4:45. Step 70 of piece 2 of epoch 9, loss 3.2080296079317727
+now time: 4:45. Step 118 of piece 2 of epoch 9, loss 3.137094189723333
+now time: 4:46. Step 166 of piece 2 of epoch 9, loss 3.1099189023176828
+now time: 4:46. Step 214 of piece 2 of epoch 9, loss 3.118170162041982
+now time: 4:46. Step 5 of piece 3 of epoch 9, loss 3.1249808371067047
+now time: 4:47. Step 53 of piece 3 of epoch 9, loss 3.108045885960261
+now time: 4:47. Step 101 of piece 3 of epoch 9, loss 3.0593134661515555
+now time: 4:48. Step 149 of piece 3 of epoch 9, loss 2.9934933880964913
+now time: 4:48. Step 14 of piece 5 of epoch 9, loss 3.3854616582393646
+now time: 4:49. Step 17 of piece 7 of epoch 9, loss 3.398040463527044
+now time: 4:49. Step 65 of piece 7 of epoch 9, loss 3.274404098590215
+now time: 4:49. Step 113 of piece 7 of epoch 9, loss 3.24554905295372
+now time: 4:50. Step 14 of piece 9 of epoch 9, loss 3.2691433827082315
+now time: 4:50. Step 13 of piece 11 of epoch 9, loss 3.5074679851531982
+now time: 4:51. Step 38 of piece 12 of epoch 9, loss 3.1119946241378784
+now time: 4:51. Step 86 of piece 12 of epoch 9, loss 2.9165850281715393
+now time: 4:51. Step 134 of piece 12 of epoch 9, loss 2.901411493619283
+now time: 4:52. Step 182 of piece 12 of epoch 9, loss 2.871244798103968
+now time: 4:52. Step 230 of piece 12 of epoch 9, loss 2.867477665344874
+now time: 4:53. Step 11 of piece 13 of epoch 9, loss 2.9660943150520325
+now time: 4:53. Step 20 of piece 15 of epoch 9, loss 3.31559689839681
+now time: 4:53. Step 8 of piece 16 of epoch 9, loss 3.2505967219670615
+now time: 4:54. Step 56 of piece 16 of epoch 9, loss 3.3187305430571237
+now time: 4:54. Step 7 of piece 17 of epoch 9, loss 3.2459562718868256
+now time: 4:55. Step 5 of piece 18 of epoch 9, loss 3.2095356980959573
+now time: 4:55. Step 11 of piece 20 of epoch 9, loss 3.341141631205877
+now time: 4:56. Step 28 of piece 21 of epoch 9, loss 3.310056229432424
+now time: 4:56. Step 31 of piece 22 of epoch 9, loss 3.2141185899575553
+now time: 4:56. Step 79 of piece 22 of epoch 9, loss 3.108036001523336
+now time: 4:57. Step 9 of piece 24 of epoch 9, loss 3.237709661324819
+now time: 4:57. Step 11 of piece 25 of epoch 9, loss 3.462823192278544
+now time: 4:58. Step 9 of piece 26 of epoch 9, loss 3.3846108814080558
+now time: 4:58. Step 7 of piece 27 of epoch 9, loss 3.440466125806173
+now time: 4:58. Step 55 of piece 27 of epoch 9, loss 3.214547057946523
+now time: 4:59. Step 103 of piece 27 of epoch 9, loss 3.1207351684570312
+now time: 4:59. Step 6 of piece 29 of epoch 9, loss 3.2483093241850534
+now time: 5:0. Step 2 of piece 31 of epoch 9, loss 3.4087145825227103
+saving model for epoch 9
+epoch 9 finished
+time: 2025-09-24 05:00:28.153352
+time for one epoch: 0:19:05.744051
+epoch 10
+time: 2025-09-24 05:00:28.153394
+now time: 5:0. Step 12 of piece 0 of epoch 10, loss 3.323124428590139
+now time: 5:0. Step 15 of piece 1 of epoch 10, loss 3.2224535743395486
+now time: 5:1. Step 11 of piece 3 of epoch 10, loss 3.3187078336874642
+now time: 5:1. Step 59 of piece 3 of epoch 10, loss 3.223116159439087
+now time: 5:2. Step 10 of piece 4 of epoch 10, loss 3.2712168594201407
+now time: 5:2. Step 27 of piece 5 of epoch 10, loss 3.301720549662908
+now time: 5:3. Step 44 of piece 6 of epoch 10, loss 3.174533704916636
+now time: 5:3. Step 92 of piece 6 of epoch 10, loss 3.144200772047043
+now time: 5:3. Step 140 of piece 6 of epoch 10, loss 3.092901110649109
+now time: 5:4. Step 188 of piece 6 of epoch 10, loss 3.0887938340504966
+now time: 5:4. Step 236 of piece 6 of epoch 10, loss 3.0524347523848214
+now time: 5:5. Step 284 of piece 6 of epoch 10, loss 3.1268853545188904
+now time: 5:5. Step 20 of piece 8 of epoch 10, loss 3.190233568350474
+now time: 5:5. Step 3 of piece 10 of epoch 10, loss 3.144994546969732
+now time: 5:6. Step 13 of piece 12 of epoch 10, loss 3.290979504585266
+now time: 5:6. Step 15 of piece 13 of epoch 10, loss 3.3390496174494424
+now time: 5:7. Step 3 of piece 14 of epoch 10, loss 3.1809949378172555
+now time: 5:7. Step 17 of piece 15 of epoch 10, loss 3.2082446316878
+now time: 5:7. Step 65 of piece 15 of epoch 10, loss 3.1749110420544944
+now time: 5:8. Step 7 of piece 16 of epoch 10, loss 3.182761033376058
+now time: 5:8. Step 5 of piece 17 of epoch 10, loss 3.382262885570526
+now time: 5:9. Step 11 of piece 19 of epoch 10, loss 3.24380099773407
+now time: 5:9. Step 59 of piece 19 of epoch 10, loss 2.9082698225975037
+now time: 5:10. Step 107 of piece 19 of epoch 10, loss 2.8470853666464486
+now time: 5:10. Step 155 of piece 19 of epoch 10, loss 2.8225799898306527
+now time: 5:10. Step 203 of piece 19 of epoch 10, loss 2.8035286366939545
+now time: 5:11. Step 251 of piece 19 of epoch 10, loss 2.831742286682129
+now time: 5:11. Step 9 of piece 21 of epoch 10, loss 3.264688014984131
+now time: 5:12. Step 57 of piece 21 of epoch 10, loss 3.185207108656565
+now time: 5:12. Step 105 of piece 21 of epoch 10, loss 3.1065969665845237
+now time: 5:12. Step 153 of piece 21 of epoch 10, loss 3.0982146660486856
+now time: 5:13. Step 201 of piece 21 of epoch 10, loss 3.0931033392747245
+now time: 5:13. Step 249 of piece 21 of epoch 10, loss 3.0718362629413605
+now time: 5:14. Step 26 of piece 23 of epoch 10, loss 3.225215176741282
+now time: 5:14. Step 74 of piece 23 of epoch 10, loss 3.1559742589791617
+now time: 5:14. Step 1 of piece 24 of epoch 10, loss 3.081170936425527
+now time: 5:15. Step 49 of piece 24 of epoch 10, loss 3.31434961160024
+now time: 5:15. Step 47 of piece 25 of epoch 10, loss 3.2424063881238303
+now time: 5:16. Step 95 of piece 25 of epoch 10, loss 3.1994722187519073
+now time: 5:16. Step 30 of piece 26 of epoch 10, loss 3.1222309271494546
+now time: 5:16. Step 78 of piece 26 of epoch 10, loss 3.0217578411102295
+now time: 5:17. Step 126 of piece 26 of epoch 10, loss 2.978832254807154
+now time: 5:17. Step 15 of piece 27 of epoch 10, loss 3.0983497202396393
+now time: 5:18. Step 8 of piece 29 of epoch 10, loss 3.3134142756462097
+now time: 5:18. Step 38 of piece 30 of epoch 10, loss 3.2693176170190177
+now time: 5:19. Step 48 of piece 31 of epoch 10, loss 3.1193455358346305
+now time: 5:19. Step 96 of piece 31 of epoch 10, loss 3.056956191857656
+saving model for epoch 10
+epoch 10 finished
+time: 2025-09-24 05:19:32.556294
+time for one epoch: 0:19:04.402900
+epoch 11
+time: 2025-09-24 05:19:32.556333
+now time: 5:19. Step 25 of piece 1 of epoch 11, loss 3.142283101876577
+now time: 5:20. Step 11 of piece 3 of epoch 11, loss 3.2983117202917733
+now time: 5:20. Step 36 of piece 4 of epoch 11, loss 3.2310279607772827
+now time: 5:21. Step 84 of piece 4 of epoch 11, loss 3.163099100192388
+now time: 5:21. Step 19 of piece 5 of epoch 11, loss 3.3043377101421356
+now time: 5:21. Step 6 of piece 7 of epoch 11, loss 3.244188129901886
+now time: 5:22. Step 7 of piece 9 of epoch 11, loss 3.158716708421707
+now time: 5:22. Step 55 of piece 9 of epoch 11, loss 3.129653126001358
+now time: 5:23. Step 103 of piece 9 of epoch 11, loss 3.09721831480662
+now time: 5:23. Step 45 of piece 10 of epoch 11, loss 3.2014727095762887
+now time: 5:23. Step 9 of piece 12 of epoch 11, loss 3.183591902256012
+now time: 5:24. Step 7 of piece 13 of epoch 11, loss 3.127357800801595
+now time: 5:24. Step 5 of piece 14 of epoch 11, loss 3.347247898578644
+now time: 5:25. Step 11 of piece 16 of epoch 11, loss 3.2671885589758554
+now time: 5:25. Step 59 of piece 16 of epoch 11, loss 3.1988000770409903
+now time: 5:26. Step 10 of piece 17 of epoch 11, loss 3.175282726685206
+now time: 5:26. Step 58 of piece 17 of epoch 11, loss 3.0849072535832724
+now time: 5:26. Step 106 of piece 17 of epoch 11, loss 3.0637416442235312
+now time: 5:27. Step 33 of piece 18 of epoch 11, loss 2.9556177258491516
+now time: 5:27. Step 81 of piece 18 of epoch 11, loss 2.818067987759908
+now time: 5:28. Step 129 of piece 18 of epoch 11, loss 2.8465810318787894
+now time: 5:28. Step 177 of piece 18 of epoch 11, loss 2.7873511413733163
+now time: 5:28. Step 225 of piece 18 of epoch 11, loss 2.782557268937429
+now time: 5:29. Step 6 of piece 19 of epoch 11, loss 2.858020613590876
+now time: 5:29. Step 6 of piece 21 of epoch 11, loss 3.2223949631055198
+now time: 5:30. Step 23 of piece 22 of epoch 11, loss 3.379187991221746
+now time: 5:30. Step 26 of piece 23 of epoch 11, loss 3.1988986432552338
+now time: 5:30. Step 74 of piece 23 of epoch 11, loss 3.0932655533154807
+now time: 5:31. Step 122 of piece 23 of epoch 11, loss 3.0498695174853006
+now time: 5:31. Step 170 of piece 23 of epoch 11, loss 3.0361544489860535
+now time: 5:32. Step 218 of piece 23 of epoch 11, loss 3.0567700266838074
+now time: 5:32. Step 266 of piece 23 of epoch 11, loss 3.077418992916743
+now time: 5:33. Step 26 of piece 24 of epoch 11, loss 3.273925373951594
+now time: 5:33. Step 28 of piece 25 of epoch 11, loss 3.167166064182917
+now time: 5:33. Step 76 of piece 25 of epoch 11, loss 3.001628985007604
+now time: 5:34. Step 124 of piece 25 of epoch 11, loss 2.976633449395498
+now time: 5:34. Step 13 of piece 26 of epoch 11, loss 2.995507061481476
+now time: 5:35. Step 47 of piece 27 of epoch 11, loss 3.267846246560415
+now time: 5:35. Step 45 of piece 28 of epoch 11, loss 3.1980909208456674
+now time: 5:35. Step 93 of piece 28 of epoch 11, loss 3.094121664762497
+now time: 5:36. Step 141 of piece 28 of epoch 11, loss 3.0529915591080985
+now time: 5:36. Step 189 of piece 28 of epoch 11, loss 3.0539453824361167
+now time: 5:37. Step 237 of piece 28 of epoch 11, loss 3.037597914536794
+now time: 5:37. Step 28 of piece 29 of epoch 11, loss 3.0868003169695535
+now time: 5:37. Step 76 of piece 29 of epoch 11, loss 3.0409657955169678
+now time: 5:38. Step 20 of piece 30 of epoch 11, loss 3.1157161394755044
+saving model for epoch 11
+epoch 11 finished
+time: 2025-09-24 05:38:36.983635
+time for one epoch: 0:19:04.427302
+epoch 12
+time: 2025-09-24 05:38:36.983678
+now time: 5:38. Step 6 of piece 1 of epoch 12, loss 3.2225349247455597
+now time: 5:39. Step 20 of piece 2 of epoch 12, loss 3.094662884871165
+now time: 5:39. Step 68 of piece 2 of epoch 12, loss 3.0100812713305154
+now time: 5:40. Step 12 of piece 3 of epoch 12, loss 3.023767799139023
+now time: 5:40. Step 22 of piece 5 of epoch 12, loss 3.1770884891351066
+now time: 5:40. Step 2 of piece 7 of epoch 12, loss 3.187975843747457
+now time: 5:41. Step 26 of piece 8 of epoch 12, loss 3.273763338724772
+now time: 5:41. Step 28 of piece 9 of epoch 12, loss 3.218999753395716
+now time: 5:42. Step 76 of piece 9 of epoch 12, loss 3.0643059511979422
+now time: 5:42. Step 3 of piece 11 of epoch 12, loss 3.1044922272364297
+now time: 5:42. Step 51 of piece 11 of epoch 12, loss 3.0707718630631766
+now time: 5:43. Step 99 of piece 11 of epoch 12, loss 3.050775150458018
+now time: 5:43. Step 147 of piece 11 of epoch 12, loss 3.0434034168720245
+now time: 5:44. Step 195 of piece 11 of epoch 12, loss 3.0315545399983725
+now time: 5:44. Step 243 of piece 11 of epoch 12, loss 3.011101226011912
+now time: 5:44. Step 3 of piece 12 of epoch 12, loss 3.005222648382187
+now time: 5:45. Step 51 of piece 12 of epoch 12, loss 3.0955419341723123
+now time: 5:45. Step 99 of piece 12 of epoch 12, loss 3.0742183725039163
+now time: 5:46. Step 147 of piece 12 of epoch 12, loss 3.0506978631019592
+now time: 5:46. Step 195 of piece 12 of epoch 12, loss 3.0313640336195626
+now time: 5:46. Step 243 of piece 12 of epoch 12, loss 3.031621793905894
+now time: 5:47. Step 34 of piece 13 of epoch 12, loss 3.1485726137955985
+now time: 5:47. Step 82 of piece 13 of epoch 12, loss 3.1830142537752786
+now time: 5:48. Step 33 of piece 14 of epoch 12, loss 3.2293789287408194
+now time: 5:48. Step 36 of piece 15 of epoch 12, loss 3.1756562193234763
+now time: 5:49. Step 24 of piece 16 of epoch 12, loss 3.100765109062195
+now time: 5:49. Step 43 of piece 17 of epoch 12, loss 3.340242922306061
+now time: 5:49. Step 10 of piece 19 of epoch 12, loss 3.2877637247244516
+now time: 5:50. Step 27 of piece 20 of epoch 12, loss 3.037170877059301
+now time: 5:50. Step 75 of piece 20 of epoch 12, loss 2.9558237493038177
+now time: 5:51. Step 123 of piece 20 of epoch 12, loss 2.961505740880966
+now time: 5:51. Step 12 of piece 21 of epoch 12, loss 2.967307905356089
+now time: 5:51. Step 60 of piece 21 of epoch 12, loss 3.094729890426
+now time: 5:52. Step 108 of piece 21 of epoch 12, loss 3.039589156707128
+now time: 5:52. Step 11 of piece 23 of epoch 12, loss 3.177238553762436
+now time: 5:53. Step 9 of piece 24 of epoch 12, loss 3.0948941012223563
+now time: 5:53. Step 10 of piece 26 of epoch 12, loss 3.251113623380661
+now time: 5:53. Step 58 of piece 26 of epoch 12, loss 2.8565906286239624
+now time: 5:54. Step 106 of piece 26 of epoch 12, loss 2.834190418322881
+now time: 5:54. Step 154 of piece 26 of epoch 12, loss 2.8116780320803323
+now time: 5:55. Step 202 of piece 26 of epoch 12, loss 2.8050156633059182
+now time: 5:55. Step 250 of piece 26 of epoch 12, loss 2.811741054058075
+now time: 5:56. Step 13 of piece 28 of epoch 12, loss 3.187347580989202
+now time: 5:56. Step 30 of piece 29 of epoch 12, loss 3.293286999066671
+now time: 5:56. Step 78 of piece 29 of epoch 12, loss 3.213754932085673
+now time: 5:57. Step 13 of piece 30 of epoch 12, loss 3.189388324817022
+now time: 5:57. Step 23 of piece 31 of epoch 12, loss 3.3356576462586722
+saving model for epoch 12
+epoch 12 finished
+time: 2025-09-24 05:57:41.373168
+time for one epoch: 0:19:04.389490
+training finished
+[INFO] Finished at: Wed Sep 24 05:57:44 AM CST 2025 with exit code 0
